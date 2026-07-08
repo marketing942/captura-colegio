@@ -6,7 +6,7 @@
 
 /* ---------- CONFIGURAÇÕES ---------- */
 
-const SHEET_URL = "https://script.google.com/macros/s/AKfycbxEp3dzDtCk7t3BslRj_EqGgP9elQbdcWTyJG2Iq2I7_AxUBd7JlRV9d2k8PRRmZ6gC/exec";
+const SHEET_URL = "https://script.google.com/macros/s/AKfycbxdFplWVSfhTjvyIA7HIWb645xRjGNhBVhTdTf5UMjo0lSpW_A_jCuys0qB4uImKXPQ/exec?aba=COLEGIO";
 
 const WHATSAPP_GROUP = "https://chat.whatsapp.com/Huxe6eDXGCc2HZxqy2GxlW?mode=gi_t";
 
