@@ -8,7 +8,7 @@
 
 const SHEET_URL = "https://script.google.com/macros/s/AKfycbxdFplWVSfhTjvyIA7HIWb645xRjGNhBVhTdTf5UMjo0lSpW_A_jCuys0qB4uImKXPQ/exec?aba=COLEGIO";
 
-const WHATSAPP_GROUP = "https://chat.whatsapp.com/Huxe6eDXGCc2HZxqy2GxlW?mode=gi_t";
+const WHATSAPP_GROUP = "https://wa.me/558194086174?text=Ol%C3%A1,%20gostaria%20de%20falar%20sobre%20o%20Col%C3%A9gio%20Cppem.";
 
 const form = document.getElementById("lead-form");
 
