@@ -661,29 +661,37 @@
     <div class="gold-bar"></div>
 
     <!-- FORMULÁRIO -->
-    <form class="form" id="lead-form" novalidate>
+    <!-- NOMENCLATURA CANÔNICA (TRACKING.md §6.0) — não traduzir os nomes.
+         O id do <form> é o identificador deste site no painel da PixelX: é um
+         `id`, no <form>, como nas três landings que funcionam.
+
+         ⚠ CONFERIR NO PAINEL: eiBtTROiAlNexbHXklSc estava no BOTÃO deste site e
+         é o mesmo identificador da landing aniversario-captura. Ou os dois sites
+         compartilham a regra de propósito, ou é sobra de copy/paste (§8.1) e o
+         valor correto é outro. Trocar o valor aqui é alteração de uma linha. -->
+    <form class="form" name="lead_form" id="eiBtTROiAlNexbHXklSc" novalidate>
       <p class="form__title">Fale com o colégio</p>
       <p class="form__hint">Deixe seus dados e retornaremos o mais breve possível.</p>
 
       <div class="field">
-        <label for="nome">Nome completo</label>
-        <input type="text" id="nome" name="nome" autocomplete="name" placeholder="Seu nome completo" required />
-        <span class="error" data-error-for="nome"></span>
+        <label for="lead_name">Nome completo</label>
+        <input type="text" id="lead_name" name="name" autocomplete="name" placeholder="Seu nome completo" required />
+        <span class="error" data-error-for="name"></span>
       </div>
 
       <div class="field">
-        <label for="email">E-mail</label>
-        <input type="email" id="email" name="email" autocomplete="email" placeholder="seu@email.com" required />
+        <label for="lead_email">E-mail</label>
+        <input type="email" id="lead_email" name="email" autocomplete="email" placeholder="seu@email.com" required />
         <span class="error" data-error-for="email"></span>
       </div>
 
       <div class="field">
-        <label for="telefone">WhatsApp</label>
-        <input type="text" id="telefone" name="telefone" autocomplete="tel" placeholder="Ex: (81) 99999-9999" required />
-        <span class="error" data-error-for="telefone"></span>
+        <label for="lead_phone">WhatsApp</label>
+        <input class="pxa_mask_phone" type="text" id="lead_phone" name="phone" autocomplete="tel" placeholder="Ex: (81) 99999-9999" required />
+        <span class="error" data-error-for="phone"></span>
       </div>
 
-      <button type="submit" id="eiBtTROiAlNexbHXklSc" class="cta">QUERO ENTRAR EM CONTATO</button>
+      <button type="submit" id="lead_submit" class="cta">QUERO ENTRAR EM CONTATO</button>
       <p class="note">Seus dados estão seguros e não serão compartilhados.</p>
 
       <p class="success" id="form-success" role="status" hidden>
@@ -705,7 +713,7 @@
   </footer>
 
   <!-- Google Tag Manager (noscript) -->
-  <noscript><iframe src="https://sgtm.cppem.com.br/ns.html?id= GTM-PJ379FLQ"
+  <noscript><iframe src="https://sgtm.cppem.com.br/ns.html?id=GTM-PJ379FLQ"
   height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <!-- End Google Tag Manager (noscript) -->
 
