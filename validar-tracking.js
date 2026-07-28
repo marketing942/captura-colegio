@@ -151,11 +151,19 @@ if (js) {
     "navegar na hora cancela a requisição assíncrona da conversão");
   add("JAVASCRIPT", "barreira de submit em fase de captura",
     /document\.addEventListener\(\s*\n?\s*"submit"/.test(jsCode), "");
+  /* Exige o PADRÃO da barreira (valida + preventDefault), não um listener de
+     clique qualquer: modais e menus têm cliques que não são barreira. */
   add("JAVASCRIPT", "barreira de clique em fase de captura",
-    /addEventListener\(\s*\n?\s*"click"/.test(jsCode), "");
+    /addEventListener\(\s*\n?\s*"click"[\s\S]{0,300}?validate\(\)[\s\S]{0,160}?preventDefault/.test(jsCode),
+    "esperado: click em captura que chama validate() e dá preventDefault se inválido");
   add("JAVASCRIPT", "emissor único (sem send_event/fbq no site)",
     !/\bsend_event\(|\bfbq\(/.test(jsCode),
     "se o painel também dispara, o Lead duplica");
+  /* Um push de Lead no dataLayer é emissor tanto quanto send_event: se houver
+     acionador no GTM para ele E a regra do painel, o Lead conta duas vezes. */
+  add("JAVASCRIPT", "sem push de Lead no dataLayer",
+    !/dataLayer\.push\(\s*\{[^}]*event\s*:\s*["'][^"']*lead/i.test(jsCode),
+    "push de lead no dataLayer é um segundo emissor (§4/§5)");
 
   /* consistência JS ↔ HTML */
   const idsHtml = new Set([...html.matchAll(/id="([^"]+)"/g)].map((m) => m[1]));
