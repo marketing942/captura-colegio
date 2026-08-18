@@ -46,6 +46,7 @@ const ORIGENS = {
   UNICIVE:            "UNICIVE",
   UNICIVE_COMUNIDADE: "UNICIVE",
   PMPE:               "PMPE",
+  PMPE_COMUNIDADE:    "PMPE",
   MANYCHAT:           "PMPE",
   COLEGIO:            "COLEGIO",
   FARDA:              "FARDA",
