@@ -11,7 +11,44 @@
 
 /* ---------- CONFIGURAÇÕES ---------- */
 
+/* Todos os projetos gravam na MESMA aba (LEADS) da planilha. O ?aba= não
+   escolhe mais a aba de destino: ele identifica QUEM enviou, e vira a coluna
+   "Origem" lá. */
 const SHEET_URL = "https://script.google.com/macros/s/AKfycbxdFplWVSfhTjvyIA7HIWb645xRjGNhBVhTdTf5UMjo0lSpW_A_jCuys0qB4uImKXPQ/exec?aba=COLEGIO";
+
+/* ---------- UTMs ----------
+   As UTMs só existem na URL do PRIMEIRO acesso. Se a pessoa recarrega, volta
+   pelo histórico, ou o link do anúncio cai numa página que redireciona, o
+   ?utm_source= já não está mais lá na hora do submit — e o lead chegava na
+   planilha sem origem nenhuma. Por isso gravamos assim que a página carrega e
+   lemos do storage no envio (first touch). O try/catch cobre navegador com
+   storage bloqueado (aba anônima, ITP), onde o comportamento volta a ser o
+   antigo em vez de quebrar o formulário. */
+const UTM_CAMPOS = ["utm_source", "utm_campaign"];
+
+(function guardarUTMs() {
+  UTM_CAMPOS.forEach((chave) => {
+    const valor = qs.get(chave);
+    if (!valor) return;
+
+    try {
+      sessionStorage.setItem(chave, valor);
+    } catch (e) {
+      /* storage indisponível: segue sem persistir */
+    }
+  });
+})();
+
+function utm(chave) {
+  const daUrl = new URLSearchParams(window.location.search).get(chave);
+  if (daUrl) return daUrl;
+
+  try {
+    return sessionStorage.getItem(chave) || "";
+  } catch (e) {
+    return "";
+  }
+}
 
 const WHATSAPP_GROUP = "https://wa.me/558194086174?text=Ol%C3%A1,%20gostaria%20de%20falar%20sobre%20o%20Col%C3%A9gio%20Cppem.";
 
@@ -121,9 +158,10 @@ async function enviar() {
     nome: nomeInput.value.trim(),
     email: emailInput.value.trim(),
     telefone: telefoneInput.value.trim(),
-    origem: "captura_colegio",
-    pagina: window.location.href,
-    data_envio: new Date().toISOString(),
+    origem: "COLEGIO",
+    pagina_url: window.location.href,
+    utm_source: utm("utm_source"),
+    utm_campaign: utm("utm_campaign"),
   };
 
   try {
